@@ -5,8 +5,6 @@ import cors from "cors";
 import serverless from "serverless-http";
 
 
-const router = express.Router();
-
 import { connectDB } from "./db";
 import api from "./routes/api";
 dotenv.config();
