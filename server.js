@@ -9,7 +9,6 @@ const router = express.Router();
 
 import { connectDB } from "./db";
 import api from "./routes/api";
-connectDB();
 dotenv.config();
 
 const app = express();
@@ -19,6 +18,7 @@ app.use(bodyParser.json())
 app.use("/api", api);
 app.use('/.netlify/functions/server', api);  // path must route to lambda
 
+connectDB();
 module.exports = app;
 module.exports.handler = serverless(app);
 
