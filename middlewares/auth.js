@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 export const authMiddleware = async (req, res, next) => {
     try {
       const { token } = req.headers;
-      const { _id, isTwoFactorCheck } = jwt.verify(token, process.env.PRIVATEKEY);
+      const { _id, isTwoFactorCheck } = jwt.verify(token, "DUTBUOI");
       const findUser = await User.findOne({_id});
       if(findUser) {
         if(findUser.isTwoFactorEnable && !isTwoFactorCheck) {
@@ -33,7 +33,7 @@ export const authMiddleware = async (req, res, next) => {
 export const authMiddlewareTwoFactor = (req, res, next) => {
     try {
       const { token } = req.headers;
-      const { _id } = jwt.verify(token, process.env.PRIVATEKEY);
+      const { _id } = jwt.verify(token, "DUTBUOI");
       req.body._id = _id;
       next();
     } catch (error) {
