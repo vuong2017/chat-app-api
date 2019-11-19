@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import uniqueValidator from "mongoose-unique-validator";
 import Speakeasy from "speakeasy";
@@ -41,7 +41,7 @@ let UserSchema = new Schema(
 );
 
 UserSchema.pre("save", function(next) {
-  this.password = bcrypt.hashSync(this.password, +process.env.SALTROUNDS);
+  this.password = bcryptjs.hashSync(this.password, +process.env.SALTROUNDS);
   this.updatedPassword = new Date(this.createdAt).toISOString();
   next();
 });
@@ -65,7 +65,7 @@ UserSchema.methods.createTokenResetPassword = function() {
 };
 
 UserSchema.methods.checkUser = function(password) {
-  return bcrypt.compareSync(password, this.password);
+  return bcryptjs.compareSync(password, this.password);
 };
 
 UserSchema.methods.sendMailForgotPassword = async function(host) {
