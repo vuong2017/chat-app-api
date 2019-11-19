@@ -8,6 +8,7 @@ import serverless from "serverless-http";
 import { connectDB } from "./db";
 import api from "./routes/api";
 dotenv.config();
+connectDB();
 
 const app = express();
 app.use(cors())
@@ -16,7 +17,6 @@ app.use(bodyParser.json())
 app.use("/api", api);
 app.use('/.netlify/functions/server', api);  // path must route to lambda
 
-connectDB();
 module.exports = app;
 module.exports.handler = serverless(app);
 
