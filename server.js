@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cors from "cors";
+import serverless from "serverless-http";
+
 
 const router = express.Router();
 
