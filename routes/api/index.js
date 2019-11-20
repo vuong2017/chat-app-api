@@ -12,7 +12,7 @@ import chatRoom from "./chat-room";
 import chatMessage from "./chat-message";
 
 
-router.get("/aa", (req,res) => res.json({a:process.env.DBURL}))
+router.get("/aa", (req,res) => res.json({a:123123}))
 router.get("/bb", authMiddleware, user.get)
 
 
